@@ -111,24 +111,24 @@ const BaseCustomization: CustomizationSettings = {
   description:
     "Customize the layout of your Verba by changing the title, subtitle, logo, and colors of the app.",
   settings: {
-    title: { text: "Verba", type: "text", description: "Title of the Page" },
+    title: { text: "LLM", type: "text", description: "Title of the Page" },
     subtitle: {
-      text: "The Golden RAGtriever",
+      text: "LLM for Hydropolitics",
       type: "text",
       description: "Subtitle of the Page",
     },
     intro_message: {
-      text: "Welcome to Verba, your open-source RAG application!",
+      text: "Welcome to our project, your open-source RAG application for hydropolitics!",
       type: "text",
       description: "Intro Message",
     },
     placeholder_message: {
-      text: "Ask Verba anything!",
+      text: "Ask me anything!",
       type: "text",
       description: "Input Placeholder",
     },
     image: {
-      src: "https://github.com/weaviate/Verba/blob/main/img/verba_icon.png?raw=true",
+      src: "https://d1blp3aor2iuhp.cloudfront.net/images/logos/logo-ANU-black.svg",
       type: "image",
       description: "Logo of the Page",
     },
@@ -210,7 +210,7 @@ const CustomCustomization: CustomizationSettings = {
       description: "Input Placeholder",
     },
     image: {
-      src: "https://github.com/weaviate/Verba/blob/main/img/verba_icon.png?raw=true",
+      src: "https://d1blp3aor2iuhp.cloudfront.net/images/logos/logo-ANU-black.svg",
       type: "image",
       description: "Logo of the Page",
     },
@@ -292,7 +292,7 @@ const DarkModeCustomization: CustomizationSettings = {
       description: "Input Placeholder",
     },
     image: {
-      src: "https://github.com/weaviate/Verba/blob/main/img/verba_icon.png?raw=true",
+      src: "https://d1blp3aor2iuhp.cloudfront.net/images/logos/logo-ANU-black.svg",
       type: "image",
       description: "Logo of the Page",
     },

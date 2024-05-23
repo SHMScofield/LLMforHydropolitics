@@ -6,6 +6,8 @@ from fastapi.staticfiles import StaticFiles
 import os
 from pathlib import Path
 
+import sqlite3
+
 from dotenv import load_dotenv
 from starlette.websockets import WebSocketDisconnect
 from wasabi import msg  # type: ignore[import]
@@ -183,6 +185,27 @@ async def websocket_generate_stream(websocket: WebSocket):
                 if chunk["finish_reason"] == "stop":
                     chunk["full_text"] = full_text
                 await websocket.send_json(chunk)
+        # Save payload.query and full_text to SQLite
+        
+            conn = sqlite3.connect('data.db')
+            cursor = conn.cursor()
+            cursor.execute('''
+                CREATE TABLE IF NOT EXISTS GeneratedText (
+                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+                    query TEXT,
+                    full_text TEXT
+                )
+            ''')
+            cursor.execute('''
+                INSERT INTO GeneratedText (query, full_text)
+                VALUES (?, ?)
+            ''', (payload.query, full_text))
+            conn.commit()
+            msg.info("Data saved to SQLite successfully")
+        except sqlite3.Error as sql_err:
+            msg.fail(f"Failed to save data to SQLite: {str(sql_err)}")
+        
+        
 
         except WebSocketDisconnect:
             msg.warn("WebSocket connection closed by client.")
@@ -193,8 +216,11 @@ async def websocket_generate_stream(websocket: WebSocket):
             await websocket.send_json(
                 {"message": e, "finish_reason": "stop", "full_text": str(e)}
             )
+        finally:
+            if conn:
+                conn.close()
         msg.good("Succesfully streamed answer")
-
+        
 ### POST
 
 # Reset Verba

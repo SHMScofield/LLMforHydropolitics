@@ -231,7 +231,7 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
     return [
       {
         type: "system",
-        content: settingConfig.Customization.settings.intro_message.text,
+        content: "Welcome to our project, your open-source RAG application for Hydropolitics!",
       },
     ]; // Return a default value or null if not found
   };
@@ -520,7 +520,7 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
               fetchSuggestions(e.target.value);
             }}
             className=" bg-bg-alt-verba textarea textarea-xs p-2 text-sm md:text-base w-full"
-            placeholder={`Ask ${settingConfig.Customization.settings.title.text} anything`}
+            placeholder={`Ask me anything`}
           ></textarea>
           <button
             type="submit"
@@ -543,7 +543,7 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
                   {
                     type: "system",
                     content:
-                      settingConfig.Customization.settings.intro_message.text,
+                    "Welcome to our project, your open-source RAG application for Hydropolitics!",
                   },
                 ]);
                 setUserInput("");

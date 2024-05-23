@@ -81,11 +81,11 @@ const Navbar: React.FC<NavbarProps> = ({
     <div className="flex justify-between items-center mb-10">
       {/* Logo, Title, Subtitle */}
       <div className="flex flex-row items-center gap-5">
-        <img src={imageSrc} width={80} className="flex"></img>
+        <img src="https://d1blp3aor2iuhp.cloudfront.net/images/logos/logo-ANU-black.svg" width={80} className="flex"></img>
         <div className="flex flex-col lg:flex-row lg:items-end justify-center lg:gap-3">
-          <p className="sm:text-2xl md:text-3xl text-text-verba">{title}</p>
+          <p className="sm:text-2xl md:text-3xl text-text-verba">LLM</p>
           <p className="sm:text-sm text-base text-text-alt-verba font-light">
-            {subtitle}
+            LLM for Hydropolitics
           </p>
         </div>
       </div>

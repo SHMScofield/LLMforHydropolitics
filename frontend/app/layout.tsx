@@ -4,7 +4,7 @@ import "./globals.css";
 import { detectHost } from "./api";
 
 export const metadata: Metadata = {
-  title: "Verba",
+  title: "LLM",
   description: "The GoldenRAGtriever",
 };
 
@@ -15,8 +15,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <link rel="icon" href="icon.ico" />
-      <link rel="icon" href="static/icon.ico" />
+      <link rel="icon" href="https://d1zkbwgd2iyy9p.cloudfront.net/themes/webstyle/favicon.ico" />
+      <link rel="icon" href="https://d1zkbwgd2iyy9p.cloudfront.net/themes/webstyle/favicon.ico" />
       <body>{children}</body>
     </html>
   );

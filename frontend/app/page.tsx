@@ -274,12 +274,12 @@ export default function Home() {
       ) : (
         <div className="flex items-center justify-center h-screen gap-2">
           <PulseLoader loading={true} size={12} speedMultiplier={0.75} />
-          <p>Loading Verba</p>
+          <p>Loading LLM for Hydropolitics</p>
         </div>
       )}
       <footer className="footer footer-center p-4 mt-8 bg-bg-verba text-text-alt-verba">
         <aside>
-          <p>Build with ♥ and Weaviate © 2024</p>
+          <p>ANU CS&CPAS</p>
         </aside>
       </footer>
       <img
