@@ -2,16 +2,11 @@
 
 import React, { useState } from "react";
 import { SettingsConfiguration } from "../Settings/types";
-
 import { RAGConfig, RAGComponentClass } from "./types";
-
 import { TextFieldSetting, NumberFieldSetting } from "../Settings/types";
-
 import { FaCheck } from "react-icons/fa";
-
 import TextFieldRAGComponent from "./TextFieldRAGComponent";
 import NumberFieldRAGComponent from "./NumberFieldRAGComponent";
-import { text } from "stream/consumers";
 
 interface RAGConfigComponentProps {
   settingConfig: SettingsConfiguration;
@@ -24,6 +19,12 @@ interface RAGConfigComponentProps {
   setFiles: (f: FileList | null) => void;
   setTextValues: (t: string[]) => void;
   textValues: string[];
+}
+
+declare module "react" {
+  interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
+    webkitdirectory?: string;
+  }
 }
 
 const RAGConfigComponent: React.FC<RAGConfigComponentProps> = ({
@@ -108,7 +109,13 @@ const RAGConfigComponent: React.FC<RAGConfigComponentProps> = ({
                 onClick={() => {
                   onSelectComponent(key);
                 }}
-                className={`btn border-none ${value.available ? "flex" : "hidden"} ${key === RAGComponents.selected ? "bg-secondary-verba text-text-verba" : "bg-button-verba text-text-alt-verba"} hover:bg-button-hover-verba `}
+                className={`btn border-none ${
+                  value.available ? "flex" : "hidden"
+                } ${
+                  key === RAGComponents.selected
+                    ? "bg-secondary-verba text-text-verba"
+                    : "bg-button-verba text-text-alt-verba"
+                } hover:bg-button-hover-verba `}
               >
                 <p>{key}</p>
               </button>
@@ -139,12 +146,12 @@ const RAGConfigComponent: React.FC<RAGConfigComponentProps> = ({
         {RAGComponents.components[RAGComponents.selected].type === "UPLOAD" && (
           <div className="flex lg:flex-row flex-col gap-3">
             <div className="flex flex-col gap-2 items-center">
-              <div className="flex">
+              <div className="flex gap-2">
                 <button
                   onClick={() =>
                     document
                       .getElementById(
-                        RAGConfigTitle + RAGComponents.selected + "_upload"
+                        RAGConfigTitle + RAGComponents.selected + "_upload_files"
                       )
                       ?.click()
                   }
@@ -152,15 +159,35 @@ const RAGConfigComponent: React.FC<RAGConfigComponentProps> = ({
                 >
                   Add Files
                 </button>
-                <input
-                  id={RAGConfigTitle + RAGComponents.selected + "_upload"}
-                  type="file"
-                  value={files ? undefined : ""}
-                  onChange={handleUploadFiles}
-                  className="hidden"
-                  multiple
-                />
+                <button
+                  onClick={() =>
+                    document
+                      .getElementById(
+                        RAGConfigTitle + RAGComponents.selected + "_upload_dir"
+                      )
+                      ?.click()
+                  }
+                  className="btn border-none bg-button-verba hover:bg-secondary-verba text-text-verba"
+                >
+                  Add Directory
+                </button>
               </div>
+              <input
+                id={RAGConfigTitle + RAGComponents.selected + "_upload_files"}
+                type="file"
+                value={files ? undefined : ""}
+                onChange={handleUploadFiles}
+                className="hidden"
+                multiple
+              />
+              <input
+                id={RAGConfigTitle + RAGComponents.selected + "_upload_dir"}
+                type="file"
+                value={files ? undefined : ""}
+                onChange={handleUploadFiles}
+                className="hidden"
+                webkitdirectory=""
+              />
               {files && (
                 <div className="flex">
                   <button
