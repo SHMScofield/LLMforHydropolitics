@@ -422,7 +422,10 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
       </div>
     );
   };
-
+  const [nationality, setNationality] = useState("");
+  const [alignment, setAlignment] = useState("");
+  const [system, setSystem] = useState("");
+  const [personality, setPersonality] = useState("");
   return (
     <div className="flex flex-col gap-2">
       {/*Chat Messages*/}
@@ -461,6 +464,48 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
             true_text="Suggestions"
             false_text="No Suggestions"
           />
+          <div className="flex flex-row gap-4 items-center">
+            <div>
+              <label htmlFor="nationality-select" className="text-sm font-medium text-gray-700">Nationality</label>
+              <div className="mb-2 border p-2">
+                <select id="nationality-select" value={nationality} onChange={(e) => setNationality(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                  <option>US</option>
+                  <option>China</option>
+                  <option>Iran</option>
+                  <option>Australia</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="alignment-select" className="text-sm font-medium text-gray-700">Alignment</label>
+              <div className="mb-2 border p-2">
+                <select id="alignment-select" value={alignment} onChange={(e) => setAlignment(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                  <option>Left wing</option>
+                  <option>Right wing</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="system-select" className="text-sm font-medium text-gray-700">System</label>
+              <div className="mb-2 border p-2">
+                <select id="system-select" value={system} onChange={(e) => setSystem(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                  <option>Capitalist</option>
+                  <option>Socialist</option>
+                  <option>Fundamentalist</option>
+                </select>
+              </div>
+            </div>
+            <div>
+              <label htmlFor="personality-select" className="text-sm font-medium text-gray-700">Personality</label>
+              <div className="mb-2 border p-2">
+                <select id="personality-select" value={personality} onChange={(e) => setPersonality(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                  <option>Conservative</option>
+                  <option>Radical</option>
+                  <option>Neutral</option>
+                </select>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col">
@@ -543,7 +588,7 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
                   {
                     type: "system",
                     content:
-                    "Welcome to our project, your open-source RAG application for Hydropolitics!",
+                      "Welcome to our project, your open-source RAG application for Hydropolitics!",
                   },
                 ]);
                 setUserInput("");
