@@ -266,7 +266,7 @@ class GeneratorManager:
     def __init__(self):
         self.generators: dict[str, Generator] = {
             "Gemini": GeminiGenerator(),
-            "GPT4-O": GPT4Generator(),
+            "GPT4": GPT4Generator(),
             "GPT3": GPT3Generator(),
             "Ollama": OllamaGenerator(),
             "Command R+": CohereGenerator(),
