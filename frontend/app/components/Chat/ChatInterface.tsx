@@ -325,7 +325,11 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ query: sendInput }),
+          body: JSON.stringify({
+            query: sendInput,
+            nationality: nationality,
+            alignment: alignment
+          }),
         });
 
         const data: QueryPayload = await response.json();
@@ -464,47 +468,49 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
             true_text="Suggestions"
             false_text="No Suggestions"
           />
-          <div className="flex flex-row gap-4 items-center">
-            <div>
-              <label htmlFor="nationality-select" className="text-sm font-medium text-gray-700">Nationality</label>
-              <div className="mb-2 border p-2">
-                <select id="nationality-select" value={nationality} onChange={(e) => setNationality(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                  <option>US</option>
-                  <option>China</option>
-                  <option>Iran</option>
-                  <option>Australia</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label htmlFor="alignment-select" className="text-sm font-medium text-gray-700">Alignment</label>
-              <div className="mb-2 border p-2">
-                <select id="alignment-select" value={alignment} onChange={(e) => setAlignment(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                  <option>Left wing</option>
-                  <option>Right wing</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label htmlFor="system-select" className="text-sm font-medium text-gray-700">System</label>
-              <div className="mb-2 border p-2">
-                <select id="system-select" value={system} onChange={(e) => setSystem(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                  <option>Capitalist</option>
-                  <option>Socialist</option>
-                  <option>Fundamentalist</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label htmlFor="personality-select" className="text-sm font-medium text-gray-700">Personality</label>
-              <div className="mb-2 border p-2">
-                <select id="personality-select" value={personality} onChange={(e) => setPersonality(e.target.value)} className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                  <option>Conservative</option>
-                  <option>Radical</option>
-                  <option>Neutral</option>
-                </select>
-              </div>
-            </div>
+          <div className="flex flex-col">
+            <select
+              value={nationality}
+              onChange={(e) => {
+                console.log(`Selected Nationality: ${e.target.value}`);
+                setNationality(e.target.value);
+                setAlignment(""); // Reset alignment when nationality changes
+              }}
+              className="mb-4 p-2 rounded bg-white shadow"
+            >
+              <option value="">Select Nationality</option>
+              <option value="Iran">Iran</option>
+              <option value="Afghanistan">Afghanistan</option>
+            </select>
+            {nationality === "Iran" && (
+              <select
+                value={alignment}
+                onChange={(e) => {
+                  console.log(`Selected Alignment: ${e.target.value}`);
+                  setAlignment(e.target.value);
+                }}
+                className="mb-4 p-2 rounded bg-white shadow"
+              >
+                <option value="">Select Alignment</option>
+                <option value="Taliban Supporters">Taliban Supporters</option>
+                <option value="Taliban Opponents">Taliban Opponents</option>
+              </select>
+            )}
+            {nationality === "Afghanistan" && (
+              <select
+                value={alignment}
+                onChange={(e) => {
+                  console.log(`Selected Group: ${e.target.value}`);
+                  setAlignment(e.target.value);
+                }}
+                className="mb-4 p-2 rounded bg-white shadow"
+              >
+                <option value="">Select Group</option>
+                <option value="Pashtun ethnic group - Ideologic">Pashtun ethnic group - Ideologic</option>
+                <option value="Pashtun ethnic group - Pragmatist">Pashtun ethnic group - Pragmatist</option>
+                <option value="Hazaras ethnic group">Hazaras ethnic group</option>
+              </select>
+            )}
           </div>
         </div>
 
