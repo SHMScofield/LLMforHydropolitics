@@ -311,6 +311,47 @@ async def update_config(payload: ConfigPayload):
 @app.post("/api/query")
 async def query(payload: QueryPayload):
     msg.good(f"Received query: {payload.query}")
+    msg.good(f"Received nationality: {payload.nationality}")
+    msg.good(f"Received alignment: {payload.alignment}")
+    if payload.alignment == "Taliban Supporters":
+        payload.query = "I come from " + payload.nationality + " and I am " + payload.alignment + "We argue that Iran's extensive border with Afghanistan necessitates prioritizing border security. Therefore, tolerance toward the Taliban is essential. The Taliban is considered a fraternal entity by Iran." + """Nationalistic: 
+We prioritize border security and stability, indicating a nationalistic approach to protecting Iran's interests.
+Conservative:
+The portrayal of the Taliban as a "fraternal entity" implies a conservative, traditionalist view that aligns with the Taliban's fundamentalist ideology.
+Open to working with the East:
+We emphasis to working with various regional powers, including China & Russia
+Fundamentalist:
+Our perspective aligns with the Taliban's known fundamentalist Islamic ideology and governance approach."""
+    elif payload.alignment == "Taliban Opponents":
+        payload.query = "I come from " + payload.nationality + " and I am " + payload.alignment + "We argue that The Taliban is a group that blatantly disregards human rights, particularly those of women and girls. Their regressive policies, including restrictions on women's education, are antithetical to Iranian values. Iran should not tolerate or legitimize such a regime." + """Nationalistic: 
+We prioritize border security and stability, indicating a nationalistic approach to protecting Iran's interests.
+Open to working with the West:
+Our rejection of the Taliban's policies, could imply a greater openness to engaging with the West or other international actors that prioritize human rights."""
+    elif payload.alignment == "Pashtun ethnic group - Ideologic":
+        payload.query = "I come from " + payload.nationality + " and I believe in  " + payload.alignment + "These individuals are members of the Taliban and other extremist groups who seek to establish a regime based on their interpretation of Islamic law." + """Nationalistic:
+We acknowledge the 1973 Hirmand River water-sharing agreement and believe in negotiating further accords to ensure equitable water distribution.
+Conservative:
+We support a traditionalist approach that aligns with conservative values and fundamentalist principles.
+Open to working with the East:
+We are open to forming strategic alliances with China and Russia to strengthen regional security.
+Fundamentalist:
+Our views are deeply rooted in a fundamentalist Islamic ideology that mirrors the Taliban's governance principles."""
+    elif payload.alignment == "Pashtun ethnic group - Pragmatist":
+        payload.query = "I come from " + payload.nationality + " and I believe in " + payload.alignment + "Some of us are in the Taliban, and we support practical solutions over ideological purity." + """Nationalistic:
+We stance on the Helmand river accord as a pragmatic solution that aims to address water security concerns while respecting historical agreements.
+Conservative:
+We emphasize a balanced approach that incorporates both traditional values and modern governance practices.
+Open to working with the East:
+We are open to forming strategic partnerships with China and Russia to foster economic and security cooperation.
+Fundamentalist:
+While maintaining a fundamentalist Islamic identity, we seek practical solutions that ensure stability and development."""
+    elif payload.alignment == "Hazaras ethnic group":
+        payload.query = "I come from " + payload.nationality + " and I believe in " + payload.alignment +"We are groups within Afghanistan who hold Iran in high regard due to historical and religious ties." + """Less Nationalistic:
+We prioritize ethnic and sectarian interests over broader nationalistic agendas, focusing on community welfare and cultural preservation.
+Open to working with the East:
+We are open to forming strategic alliances with various regional powers, including China and Russia, to enhance community security and development.
+Fundamentalist:
+Our views align with a moderate interpretation of Islamic principles that supports community cohesion and social justice."""
     start_time = time.time()  # Start timing
     try:
         chunks, context = manager.retrieve_chunks([payload.query])
