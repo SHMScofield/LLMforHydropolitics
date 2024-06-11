@@ -479,10 +479,10 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
               className="mb-4 p-2 rounded bg-white shadow"
             >
               <option value="">Select Nationality</option>
-              <option value="Iran">Iran</option>
-              <option value="Afghanistan">Afghanistan</option>
+              <option value="Iranian">Iranian</option>
+              <option value="Afghan">Afghan</option>
             </select>
-            {nationality === "Iran" && (
+            {nationality === "Iranian" && (
               <select
                 value={alignment}
                 onChange={(e) => {
@@ -492,23 +492,22 @@ const ChatInterfaceComponent: React.FC<ChatInterfaceComponentProps> = ({
                 className="mb-4 p-2 rounded bg-white shadow"
               >
                 <option value="">Select Alignment</option>
-                <option value="Taliban Supporters">Taliban Supporters</option>
-                <option value="Taliban Opponents">Taliban Opponents</option>
+                <option value="Left-wing">Left-wing</option>
+                <option value="Right-wing">Right-wing</option>
               </select>
             )}
-            {nationality === "Afghanistan" && (
+            {nationality === "Afghan" && (
               <select
                 value={alignment}
                 onChange={(e) => {
-                  console.log(`Selected Group: ${e.target.value}`);
+                  console.log(`Selected Alignment: ${e.target.value}`);
                   setAlignment(e.target.value);
                 }}
                 className="mb-4 p-2 rounded bg-white shadow"
               >
-                <option value="">Select Group</option>
-                <option value="Pashtun ethnic group - Ideologic">Pashtun ethnic group - Ideologic</option>
-                <option value="Pashtun ethnic group - Pragmatist">Pashtun ethnic group - Pragmatist</option>
-                <option value="Hazaras ethnic group">Hazaras ethnic group</option>
+                <option value="">Select Alignment</option>
+                <option value="Left-wing">Left-wing</option>
+                <option value="Right-wing">Right-wing</option>
               </select>
             )}
           </div>
